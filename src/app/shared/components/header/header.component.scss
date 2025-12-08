@@ -1,0 +1,216 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  padding: 12px 0;
+
+  &.scrolled {
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+
+    img {
+      height: 32px;
+      width: auto;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    a {
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    justify-content: center;
+
+    a {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: white;
+      text-decoration: none;
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #ffcc00;
+      }
+
+      &.active {
+        color: #ffcc00;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background-color: #ffcc00;
+        }
+      }
+    }
+
+    .nav-item-dropdown {
+      position: relative;
+
+      .modelos-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: white;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px 0;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #ffcc00;
+        }
+
+        mat-icon {
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    @media (max-width: 968px) {
+      display: none;
+    }
+  }
+
+  .cta-button {
+    flex: 0 0 auto;
+
+    .test-drive-btn {
+      color: white;
+      border-color: white;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 8px 24px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: white;
+        color: #003478;
+        transform: translateY(-2px);
+      }
+    }
+
+    @media (max-width: 968px) {
+      display: none;
+    }
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    color: white;
+
+    @media (max-width: 968px) {
+      display: block;
+    }
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    background-color: #003478;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+    &.open {
+      display: flex;
+      max-height: 400px;
+    }
+
+    a, .mobile-dropdown button {
+      width: 100%;
+      text-align: left;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: white;
+
+      &.active {
+        background-color: rgba(255, 204, 0, 0.2);
+        border-left: 4px solid #ffcc00;
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+
+      &.open {
+        display: flex;
+      }
+    }
+  }
+}
+
+// Estilos para el dropdown de modelos
+::ng-deep .modelos-dropdown {
+  margin-top: 8px;
+
+  .mat-mdc-menu-content {
+    padding: 8px 0;
+  }
+
+  .mat-mdc-menu-item {
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(0, 52, 120, 0.1);
+      padding-left: 24px;
+    }
+
+    &.ver-todos {
+      color: #003478;
+      font-weight: 600;
+    }
+  }
+}

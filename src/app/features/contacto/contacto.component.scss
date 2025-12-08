@@ -1,0 +1,340 @@
+.contacto-container {
+  width: 100%;
+  padding-top: 64px;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.contacto-header {
+  background: linear-gradient(135deg, #003478 0%, #0056b3 100%);
+  color: white;
+  padding: 80px 24px;
+  text-align: center;
+
+  .header-content {
+    max-width: 800px;
+    margin: 0 auto;
+
+    h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      margin: 0;
+      opacity: 0.95;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* ============================================
+   CONTENIDO PRINCIPAL
+   ============================================ */
+.contacto-content {
+  padding: 80px 24px;
+  background: #f8f9fa;
+
+  .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* ============================================
+   COLUMNA DE INFORMACIÓN
+   ============================================ */
+.info-column {
+  .info-card {
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #003478;
+      margin: 0 0 32px 0;
+      text-align: center;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+
+      mat-icon {
+        color: #003478;
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+      }
+
+      .info-text {
+        flex: 1;
+
+        h3 {
+          font-size: 16px;
+          font-weight: 600;
+          color: #003478;
+          margin: 0 0 8px 0;
+        }
+
+        p {
+          font-size: 15px;
+          color: #666;
+          margin: 0 0 4px 0;
+          line-height: 1.6;
+        }
+
+        a {
+          font-size: 14px;
+          color: #0056b3;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #003478;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    mat-divider {
+      margin: 24px 0;
+    }
+
+    .horarios {
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #003478;
+        margin: 0 0 16px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        mat-icon {
+          font-size: 24px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          display: flex;
+          justify-content: space-between;
+          padding: 12px 0;
+          border-bottom: 1px solid #e0e0e0;
+          font-size: 14px;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          strong {
+            color: #333;
+          }
+
+          span {
+            color: #666;
+          }
+        }
+      }
+    }
+
+    .social-media {
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #003478;
+        margin: 0 0 16px 0;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 12px;
+
+        a {
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: translateY(-3px);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ============================================
+   COLUMNA DE FORMULARIO
+   ============================================ */
+.form-column {
+  .form-card {
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #003478;
+      margin: 0 0 32px 0;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .full-width {
+        width: 100%;
+      }
+
+      mat-form-field {
+        ::ng-deep .mat-mdc-form-field-icon-prefix {
+          margin-right: 12px;
+          color: #003478;
+        }
+      }
+
+      .checkbox-container {
+        margin: 8px 0;
+
+        .policy-link {
+          color: #0056b3;
+          text-decoration: none;
+          font-weight: 500;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .checkbox-error {
+          font-size: 12px;
+          color: #f44336;
+          margin-top: 4px;
+          display: block;
+        }
+      }
+
+      .submit-button {
+        margin-top: 16px;
+
+        .submit-btn {
+          width: 100%;
+          font-size: 16px;
+          font-weight: 600;
+          padding: 14px;
+          border-radius: 8px;
+          letter-spacing: 0.5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+
+          mat-icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ============================================
+   MAPA
+   ============================================ */
+.mapa-section {
+  padding: 80px 24px;
+  background: white;
+
+  h2 {
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 700;
+    color: #003478;
+    text-align: center;
+    margin: 0 0 40px 0;
+    letter-spacing: 1px;
+  }
+
+  .mapa-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+    iframe {
+      display: block;
+    }
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 992px) {
+  .contacto-header {
+    padding: 60px 24px;
+  }
+
+  .contacto-content {
+    padding: 60px 24px;
+  }
+
+  .mapa-section {
+    padding: 60px 24px;
+
+    .mapa-container iframe {
+      height: 350px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .info-column .info-card,
+  .form-column .form-card {
+    padding: 24px;
+  }
+
+  .contacto-header {
+    padding: 40px 16px;
+  }
+
+  .contacto-content {
+    padding: 40px 16px;
+  }
+
+  .mapa-section {
+    padding: 40px 16px;
+
+    .mapa-container iframe {
+      height: 300px;
+    }
+  }
+}

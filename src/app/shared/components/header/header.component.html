@@ -1,0 +1,83 @@
+<header class="header">
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="logo">
+      <a routerLink="/home">
+        <img src="https://www.ford.com.ar/content/dam/ford-ar/ford-logo-white.svg" alt="Ford Logo" />
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        HOME
+      </a>
+
+      <!-- Dropdown de Modelos -->
+      <div class="nav-item-dropdown">
+        <button [matMenuTriggerFor]="modelosMenu" class="modelos-btn">
+          MODELOS
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #modelosMenu="matMenu" class="modelos-dropdown">
+          <a *ngFor="let modelo of modelos"
+             [routerLink]="['/modelos', modelo.slug]"
+             mat-menu-item>
+            {{ modelo.nombre }}
+          </a>
+          <mat-divider></mat-divider>
+          <a routerLink="/modelos" mat-menu-item class="ver-todos">
+            Ver Todos los Modelos
+          </a>
+        </mat-menu>
+      </div>
+
+      <a routerLink="/contacto" routerLinkActive="active">
+        CONTACTO
+      </a>
+    </nav>
+
+    <!-- CTA Button -->
+    <div class="cta-button">
+      <button mat-stroked-button routerLink="/contacto" class="test-drive-btn">
+        Agendá tu Test Drive
+      </button>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" [class.open]="mobileMenuOpen" aria-label="Navegación móvil">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+       mat-button (click)="toggleMobileMenu()">
+      HOME
+    </a>
+
+    <div class="mobile-dropdown">
+      <button mat-button [matMenuTriggerFor]="mobileModelosMenu">
+        MODELOS
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #mobileModelosMenu="matMenu">
+        <a *ngFor="let modelo of modelos"
+           [routerLink]="['/modelos', modelo.slug]"
+           mat-menu-item
+           (click)="toggleMobileMenu()">
+          {{ modelo.nombre }}
+        </a>
+        <mat-divider></mat-divider>
+        <a routerLink="/modelos" mat-menu-item (click)="toggleMobileMenu()">
+          Ver Todos los Modelos
+        </a>
+      </mat-menu>
+    </div>
+
+    <a routerLink="/contacto" routerLinkActive="active" mat-button (click)="toggleMobileMenu()">
+      CONTACTO
+    </a>
+  </nav>
+</header>

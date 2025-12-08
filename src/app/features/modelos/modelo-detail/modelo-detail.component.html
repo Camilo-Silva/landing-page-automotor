@@ -1,0 +1,152 @@
+<div class="modelo-detail-container" *ngIf="!loading && modelo">
+  <!-- Botón de volver -->
+  <!-- <div class="back-button-container">
+    <button mat-button (click)="volverALista()" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+      Volver a Modelos
+    </button>
+  </div> -->
+
+  <!-- Hero Section con imagen principal -->
+  <section class="modelo-hero" [style.background-image]="'url(' + modelo.imagenPrincipal + ')'">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>{{ modelo.nombre }}</h1>
+      <p>{{ modelo.descripcionCorta }}</p>
+      <div class="hero-precio">
+        <span class="precio-label">Desde</span>
+        <span class="precio-valor">{{ formatPrecio(modelo.precio) }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Descripción detallada -->
+  <section class="descripcion-section">
+    <div class="container">
+      <h2>Conoce el {{ modelo.nombre }}</h2>
+      <p class="descripcion-texto">{{ modelo.descripcionLarga }}</p>
+    </div>
+  </section>
+
+  <!-- Galería de imágenes -->
+  <section class="galeria-section">
+    <h2>Galería</h2>
+
+    <div class="galeria-principal">
+      <img [src]="modelo.galeria[imagenSeleccionada]"
+           [alt]="modelo.nombre + ' - Imagen ' + (imagenSeleccionada + 1)"
+           class="imagen-principal">
+    </div>
+
+    <div class="galeria-thumbnails">
+      <div *ngFor="let imagen of modelo.galeria; let i = index"
+           class="thumbnail"
+           [class.active]="i === imagenSeleccionada"
+           (click)="seleccionarImagen(i)">
+        <img [src]="imagen" [alt]="modelo.nombre + ' - Miniatura ' + (i + 1)">
+      </div>
+    </div>
+  </section>
+
+  <!-- Especificaciones técnicas -->
+  <section class="especificaciones-section" [style.background-image]="'url(' + modelo.galeria[1] + ')'">
+    <div class="section-overlay"></div>
+    <div class="container">
+      <h2>Especificaciones Técnicas</h2>
+
+      <div class="specs-grid">
+        <mat-card class="spec-card">
+          <mat-icon class="spec-icon">settings</mat-icon>
+          <h3>Motor</h3>
+          <p>{{ modelo.especificaciones.motor }}</p>
+        </mat-card>
+
+        <mat-card class="spec-card">
+          <mat-icon class="spec-icon">speed</mat-icon>
+          <h3>Potencia</h3>
+          <p>{{ modelo.especificaciones.potencia }}</p>
+        </mat-card>
+
+        <mat-card class="spec-card">
+          <mat-icon class="spec-icon">sync</mat-icon>
+          <h3>Transmisión</h3>
+          <p>{{ modelo.especificaciones.transmision }}</p>
+        </mat-card>
+
+        <mat-card class="spec-card">
+          <mat-icon class="spec-icon">terrain</mat-icon>
+          <h3>Tracción</h3>
+          <p>{{ modelo.especificaciones.traccion }}</p>
+        </mat-card>
+
+        <mat-card class="spec-card">
+          <mat-icon class="spec-icon">local_gas_station</mat-icon>
+          <h3>Consumo</h3>
+          <p>{{ modelo.especificaciones.consumo }}</p>
+        </mat-card>
+
+        <mat-card class="spec-card" *ngIf="modelo.especificaciones.aceleracion">
+          <mat-icon class="spec-icon">flash_on</mat-icon>
+          <h3>Aceleración</h3>
+          <p>{{ modelo.especificaciones.aceleracion }}</p>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Características destacadas -->
+  <section class="caracteristicas-section" [style.background-image]="'url(' + modelo.galeria[2] + ')'">
+    <div class="section-overlay"></div>
+    <div class="container">
+      <h2>Características Destacadas</h2>
+
+      <div class="caracteristicas-grid">
+        <div *ngFor="let caracteristica of modelo.caracteristicas" class="caracteristica-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>{{ caracteristica }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Te interesa el {{ modelo.nombre }}?</h2>
+        <p>Agenda un test drive o solicita más información con nuestros asesores</p>
+
+        <div class="cta-buttons">
+          <button mat-raised-button color="accent" (click)="contactar()">
+            <mat-icon>contact_support</mat-icon>
+            Solicitar Información
+          </button>
+          <button mat-raised-button color="primary">
+            <mat-icon>directions_car</mat-icon>
+            Agendar Test Drive
+          </button>
+          <button mat-stroked-button routerLink="/contacto">
+            <mat-icon>phone</mat-icon>
+            Contactar
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Loading -->
+<div *ngIf="loading" class="loading-container">
+  <mat-spinner></mat-spinner>
+  <p>Cargando información del modelo...</p>
+</div>
+
+<!-- No encontrado -->
+<div *ngIf="!loading && !modelo" class="not-found-container">
+  <mat-icon>error_outline</mat-icon>
+  <h2>Modelo no encontrado</h2>
+  <p>El modelo que buscas no está disponible</p>
+  <button mat-raised-button color="primary" routerLink="/modelos">
+    Ver Todos los Modelos
+  </button>
+</div>

@@ -1,0 +1,114 @@
+<div class="home-container">
+  <!-- Sección Hero con Video de Fondo -->
+  <section class="hero-section">
+    <!-- Video de fondo -->
+    <video #heroVideo class="hero-video" autoplay loop muted playsinline preload="auto">
+      <source [src]="heroVideoUrl" type="video/mp4">
+      Su navegador no soporta la reproducción de video.
+    </video>
+
+    <!-- Overlay oscuro para mejor contraste -->
+    <div class="hero-overlay"></div>
+
+    <!-- Contenido superpuesto -->
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-down">FORD TERRITORY</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+        SUV que lidera la nueva era tecnológica
+      </p>
+      <button mat-raised-button color="accent" class="hero-cta" data-aos="zoom-in" data-aos-delay="400">
+        Descubrir Más
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+
+    <!-- Indicador de scroll -->
+    <div class="scroll-indicator">
+      <mat-icon>expand_more</mat-icon>
+    </div>
+  </section>
+
+  <!-- Sección de Carrusel -->
+  <section class="carousel-section">
+    <div class="carousel-container"
+         (mouseenter)="pauseAutoPlay()"
+         (mouseleave)="resumeAutoPlay()">
+
+      <!-- Header superpuesto -->
+      <div class="carousel-header">
+        <h2>Experiencia Territory</h2>
+        <p>Conoce cada detalle de tu próximo SUV</p>
+      </div>
+
+      <!-- Slides del carrusel -->
+      <div class="carousel-slides">
+        <div *ngFor="let item of carouselItems; let i = index"
+             class="carousel-slide"
+             [class.active]="i === currentSlide"
+             [class.prev]="i === (currentSlide - 1 + carouselItems.length) % carouselItems.length"
+             [class.next]="i === (currentSlide + 1) % carouselItems.length">
+
+          <div class="slide-content">
+            <!-- Imagen -->
+            <div *ngIf="item.type === 'image'" class="slide-media">
+              <img [src]="item.url" [alt]="item.title" loading="lazy">
+            </div>
+
+            <!-- Video (si fuera necesario) -->
+            <div *ngIf="item.type === 'video'" class="slide-media">
+              <video [src]="item.url" muted loop playsinline></video>
+            </div>
+
+            <!-- Información del slide -->
+            <div class="slide-info">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de navegación -->
+      <button mat-icon-button class="carousel-btn prev" (click)="prevSlide()" aria-label="Anterior">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button mat-icon-button class="carousel-btn next" (click)="nextSlide()" aria-label="Siguiente">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+
+      <!-- Indicadores (dots) -->
+      <div class="carousel-indicators">
+        <button *ngFor="let item of carouselItems; let i = index"
+                class="indicator-dot"
+                [class.active]="i === currentSlide"
+                (click)="goToSlide(i)"
+                [attr.aria-label]="'Ir a slide ' + (i + 1)">
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Características Destacadas -->
+  <section class="features-section">
+    <div class="features-container">
+      <h2>¿Por qué elegir Territory?</h2>
+
+      <div class="features-grid">
+        <div class="feature-card" *ngFor="let feature of features">
+          <mat-icon class="feature-icon">{{ feature.icon }}</mat-icon>
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.desc }}</p>
+        </div>
+      </div>
+
+      <div class="features-cta">
+        <button mat-raised-button color="primary" routerLink="/modelos/territory">
+          Ver Territory Completo
+        </button>
+        <button mat-stroked-button routerLink="/modelos">
+          Ver Todos los Modelos
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

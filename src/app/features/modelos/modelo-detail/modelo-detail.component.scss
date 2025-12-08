@@ -1,0 +1,526 @@
+.modelo-detail-container {
+  width: 100%;
+  padding-top: 64px;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  @media (max-width: 768px) {
+    padding: 0 24px;
+  }
+}
+
+/* ============================================
+   BOTÓN DE VOLVER
+   ============================================ */
+.back-button-container {
+  padding: 24px 40px;
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  position: sticky;
+  top: 64px;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 768px) {
+    padding: 16px 24px;
+  }
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #003478;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(0, 52, 120, 0.05);
+      padding-left: 8px;
+    }
+
+    mat-icon {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover mat-icon {
+      transform: translateX(-4px);
+    }
+  }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.modelo-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 80vh;
+    min-height: 600px;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 0 24px;
+    max-width: 900px;
+
+    h1 {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 900;
+      margin: 0 0 16px 0;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    p {
+      font-size: clamp(18px, 3vw, 24px);
+      margin: 0 0 32px 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .hero-precio {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 204, 0, 0.95);
+      padding: 16px 40px;
+      border-radius: 50px;
+      display: inline-flex;
+
+      .precio-label {
+        font-size: 14px;
+        color: #003478;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .precio-valor {
+        font-size: 32px;
+        color: #003478;
+        font-weight: 900;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
+
+/* ============================================
+   DESCRIPCIÓN
+   ============================================ */
+.descripcion-section {
+  padding: 100px 40px;
+  background: white;
+
+  @media (max-width: 768px) {
+    padding: 60px 24px;
+  }
+
+  .container {
+    max-width: 1000px;
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    color: #003478;
+    text-align: center;
+    margin: 0 0 32px 0;
+    letter-spacing: 1px;
+  }
+
+  .descripcion-texto {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #555;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+/* ============================================
+   GALERÍA
+   ============================================ */
+.galeria-section {
+  padding: 0;
+  background: #000;
+  position: relative;
+
+  h2 {
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    padding: 60px 24px 40px;
+    margin: 0;
+    letter-spacing: 1px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
+    position: relative;
+    z-index: 2;
+  }
+
+  .galeria-principal {
+    width: 100%;
+    height: 90vh;
+    min-height: 600px;
+    overflow: hidden;
+    position: relative;
+
+    @media (max-width: 768px) {
+      height: 60vh;
+      min-height: 400px;
+    }
+
+    .imagen-principal {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .galeria-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    background: #000;
+
+    .thumbnail {
+      height: 200px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 4px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        border-color: #ffcc00;
+
+        &::after {
+          background: rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      &.active {
+        border-color: #003478;
+
+        &::after {
+          background: rgba(0, 52, 120, 0.3);
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+      }
+
+      @media (max-width: 768px) {
+        height: 150px;
+      }
+    }
+  }
+}
+
+/* ============================================
+   ESPECIFICACIONES
+   ============================================ */
+.especificaciones-section {
+  padding: 100px 40px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 60px 24px;
+    background-attachment: scroll;
+  }
+
+  .section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(2px);
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    color: #003478;
+    text-align: center;
+    margin: 0 0 60px 0;
+    letter-spacing: 1px;
+  }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+
+    .spec-card {
+      text-align: center;
+      padding: 32px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 24px rgba(0, 52, 120, 0.2);
+      }
+
+      .spec-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        color: #003478;
+        margin-bottom: 16px;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #666;
+        margin: 0 0 8px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      p {
+        font-size: 18px;
+        font-weight: 700;
+        color: #003478;
+        margin: 0;
+      }
+    }
+  }
+}
+
+/* ============================================
+   CARACTERÍSTICAS
+   ============================================ */
+.caracteristicas-section {
+  padding: 100px 40px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 60px 24px;
+    background-attachment: scroll;
+  }
+
+  .section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin: 0 0 60px 0;
+    letter-spacing: 1px;
+  }
+
+  .caracteristicas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+
+    .caracteristica-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+
+      &:hover {
+        transform: translateX(8px);
+        box-shadow: 0 4px 16px rgba(255, 204, 0, 0.4);
+        background: rgba(255, 255, 255, 1);
+      }
+
+      mat-icon {
+        color: #28a745;
+        font-size: 28px;
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+      }
+
+      span {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.5;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+  padding: 80px 24px;
+  background: linear-gradient(135deg, #003478 0%, #0056b3 100%);
+  color: white;
+
+  .cta-content {
+    text-align: center;
+
+    h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 0 0 40px 0;
+      opacity: 0.95;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+
+      button {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 12px 32px;
+        border-radius: 50px;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        mat-icon {
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+
+/* ============================================
+   LOADING Y NOT FOUND
+   ============================================ */
+.loading-container,
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 80px 24px;
+  gap: 24px;
+
+  mat-icon {
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+    color: #999;
+  }
+
+  h2 {
+    font-size: 32px;
+    color: #333;
+    margin: 0;
+  }
+
+  p {
+    font-size: 18px;
+    color: #666;
+    margin: 0;
+  }
+}

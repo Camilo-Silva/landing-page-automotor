@@ -1,0 +1,90 @@
+<div class="modelos-container">
+  <!-- Header de la página -->
+  <section class="modelos-header">
+    <div class="header-content">
+      <h1>Nuestra Línea de Vehículos</h1>
+      <p>Descubre la gama completa de modelos Ford. Tecnología, diseño y performance en cada vehículo.</p>
+    </div>
+  </section>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Cargando modelos...</p>
+  </div>
+
+  <!-- Grid de Modelos -->
+  <section *ngIf="!loading" class="modelos-grid-section">
+    <div class="modelos-grid">
+      <mat-card *ngFor="let modelo of modelos"
+                class="modelo-card"
+                (click)="verDetalle(modelo.slug)"
+                (keyup.enter)="verDetalle(modelo.slug)"
+                tabindex="0">        <!-- Imagen del modelo -->
+        <div class="card-image-container">
+          <img mat-card-image
+               [src]="modelo.imagenCard"
+               [alt]="modelo.nombre"
+               loading="lazy">
+          <div class="card-overlay">
+            <button mat-fab color="accent" class="view-btn">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Contenido de la card -->
+        <mat-card-content>
+          <div class="card-header">
+            <h2 class="modelo-nombre">{{ modelo.nombre }}</h2>
+            <span class="modelo-precio">{{ formatPrecio(modelo.precio) }}</span>
+          </div>
+
+          <p class="modelo-descripcion">{{ modelo.descripcionCorta }}</p>
+
+          <!-- Especificaciones destacadas -->
+          <div class="specs-preview">
+            <div class="spec-item">
+              <mat-icon>speed</mat-icon>
+              <span>{{ modelo.especificaciones.potencia }}</span>
+            </div>
+            <div class="spec-item">
+              <mat-icon>settings</mat-icon>
+              <span>{{ modelo.especificaciones.transmision }}</span>
+            </div>
+            <div class="spec-item">
+              <mat-icon>local_gas_station</mat-icon>
+              <span>{{ modelo.especificaciones.consumo }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <!-- Acciones -->
+        <mat-card-actions>
+          <button mat-raised-button color="primary" class="details-btn">
+            Ver Detalles
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- Sección CTA -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>¿Necesitas ayuda para elegir?</h2>
+      <p>Nuestros asesores están listos para ayudarte a encontrar el vehículo perfecto</p>
+      <div class="cta-buttons">
+        <button mat-raised-button color="accent" routerLink="/contacto">
+          <mat-icon>contact_support</mat-icon>
+          Contactar Asesor
+        </button>
+        <button mat-stroked-button>
+          <mat-icon>phone</mat-icon>
+          Llamar Ahora
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

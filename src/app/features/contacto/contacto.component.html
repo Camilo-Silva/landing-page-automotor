@@ -1,0 +1,208 @@
+<div class="contacto-container">
+  <!-- Header -->
+  <section class="contacto-header">
+    <div class="header-content">
+      <h1>Contáctanos</h1>
+      <p>Estamos aquí para ayudarte. Envíanos tu consulta y te responderemos a la brevedad.</p>
+    </div>
+  </section>
+
+  <!-- Contenido Principal -->
+  <section class="contacto-content">
+    <div class="content-wrapper">
+
+      <!-- Información de Contacto -->
+      <div class="info-column">
+        <mat-card class="info-card">
+          <h2>Información de la Concesionaria</h2>
+
+          <div class="info-item">
+            <mat-icon>location_on</mat-icon>
+            <div class="info-text">
+              <h3>Dirección</h3>
+              <p>Av. Principal 1234<br>Ciudad, País</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <mat-icon>phone</mat-icon>
+            <div class="info-text">
+              <h3>Teléfono</h3>
+              <p>+54 11 1234-5678</p>
+              <a href="tel:+541112345678">Llamar ahora</a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <mat-icon>email</mat-icon>
+            <div class="info-text">
+              <h3>Email</h3>
+              <p>ventas&#64;ford-concesionaria.com</p>
+              <a href="mailto:ventas&#64;ford-concesionaria.com">Enviar email</a>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="horarios">
+            <h3>
+              <mat-icon>schedule</mat-icon>
+              Horarios de Atención
+            </h3>
+            <ul>
+              <li>
+                <strong>Lunes a Viernes:</strong>
+                <span>9:00 - 18:00</span>
+              </li>
+              <li>
+                <strong>Sábados:</strong>
+                <span>9:00 - 13:00</span>
+              </li>
+              <li>
+                <strong>Domingos:</strong>
+                <span>Cerrado</span>
+              </li>
+            </ul>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="social-media">
+            <h3>Síguenos</h3>
+            <div class="social-links">
+              <a href="#" mat-icon-button color="primary" aria-label="Facebook">
+                <mat-icon>facebook</mat-icon>
+              </a>
+              <a href="#" mat-icon-button color="primary" aria-label="Instagram">
+                <mat-icon>instagram</mat-icon>
+              </a>
+              <a href="#" mat-icon-button color="primary" aria-label="Twitter">
+                <mat-icon>twitter</mat-icon>
+              </a>
+              <a href="#" mat-icon-button color="primary" aria-label="YouTube">
+                <mat-icon>youtube</mat-icon>
+              </a>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <!-- Formulario de Contacto -->
+      <div class="form-column">
+        <mat-card class="form-card">
+          <h2>Envíanos tu Consulta</h2>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+            <!-- Nombre Completo -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre Completo</mat-label>
+              <input matInput
+                     formControlName="nombreCompleto"
+                     placeholder="Juan Pérez"
+                     required>
+              <mat-icon matPrefix>person</mat-icon>
+              <mat-error *ngIf="f['nombreCompleto'].invalid && (f['nombreCompleto'].dirty || formSubmitted)">
+                {{ getErrorMessage('nombreCompleto') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput
+                     formControlName="email"
+                     type="email"
+                     placeholder="ejemplo@email.com"
+                     required>
+              <mat-icon matPrefix>email</mat-icon>
+              <mat-error *ngIf="f['email'].invalid && (f['email'].dirty || formSubmitted)">
+                {{ getErrorMessage('email') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Teléfono -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Teléfono</mat-label>
+              <input matInput
+                     formControlName="telefono"
+                     type="tel"
+                     placeholder="+54 11 1234-5678"
+                     required>
+              <mat-icon matPrefix>phone</mat-icon>
+              <mat-error *ngIf="f['telefono'].invalid && (f['telefono'].dirty || formSubmitted)">
+                {{ getErrorMessage('telefono') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Modelo de Interés -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Modelo de Interés</mat-label>
+              <mat-select formControlName="modeloInteres" required>
+                <mat-option *ngFor="let modelo of modelos" [value]="modelo">
+                  {{ modelo }}
+                </mat-option>
+              </mat-select>
+              <mat-icon matPrefix>directions_car</mat-icon>
+              <mat-error *ngIf="f['modeloInteres'].invalid && (f['modeloInteres'].dirty || formSubmitted)">
+                {{ getErrorMessage('modeloInteres') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Mensaje -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Mensaje</mat-label>
+              <textarea matInput
+                        formControlName="mensaje"
+                        rows="5"
+                        placeholder="Cuéntanos cómo podemos ayudarte..."
+                        required></textarea>
+              <mat-icon matPrefix>message</mat-icon>
+              <mat-error *ngIf="f['mensaje'].invalid && (f['mensaje'].dirty || formSubmitted)">
+                {{ getErrorMessage('mensaje') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Checkbox Política de Privacidad -->
+            <div class="checkbox-container">
+              <mat-checkbox formControlName="aceptaPolitica" color="primary">
+                Acepto la <a href="#" class="policy-link">política de privacidad</a>
+              </mat-checkbox>
+              <mat-error *ngIf="f['aceptaPolitica'].invalid && formSubmitted" class="checkbox-error">
+                Debes aceptar la política de privacidad
+              </mat-error>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="submit-button">
+              <button mat-raised-button
+                      color="primary"
+                      type="submit"
+                      class="submit-btn">
+                <mat-icon>send</mat-icon>
+                Enviar Consulta
+              </button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa de Ubicación -->
+  <section class="mapa-section">
+    <h2>Nuestra Ubicación</h2>
+    <div class="mapa-container">
+      <iframe
+        title="Mapa de ubicación de la concesionaria Ford"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52563.18056318442!2d-58.450594049999995!3d-34.6037181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e33!2sBuenos%20Aires%2C%20CABA!5e0!3m2!1ses!2sar!4v1234567890123"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+</div>
