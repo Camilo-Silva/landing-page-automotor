@@ -24,12 +24,42 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class HeaderComponent {
   modelos = [
-    { nombre: 'Territory', slug: 'territory' },
-    { nombre: 'Ranger', slug: 'ranger' },
-    { nombre: 'Mustang', slug: 'mustang' },
-    { nombre: 'Maverick', slug: 'maverick' },
-    { nombre: 'Bronco', slug: 'bronco' },
-    { nombre: 'F-150', slug: 'f-150' }
+    {
+      nombre: 'Territory',
+      slug: 'territory',
+      imagen: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=300&q=80',
+      descripcion: 'SUV tecnológico'
+    },
+    {
+      nombre: 'Ranger',
+      slug: 'ranger',
+      imagen: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=300&q=80',
+      descripcion: 'Pickup robusta'
+    },
+    {
+      nombre: 'Mustang',
+      slug: 'mustang',
+      imagen: 'https://images.unsplash.com/photo-1584345604476-8ec5f2fe01e2?w=300&q=80',
+      descripcion: 'Deportivo icónico'
+    },
+    {
+      nombre: 'Maverick',
+      slug: 'maverick',
+      imagen: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=300&q=80',
+      descripcion: 'Pickup compacta'
+    },
+    {
+      nombre: 'Bronco',
+      slug: 'bronco',
+      imagen: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=300&q=80',
+      descripcion: 'SUV todoterreno'
+    },
+    {
+      nombre: 'F-150',
+      slug: 'f-150',
+      imagen: 'https://images.unsplash.com/photo-1542362567-b07e54358753?w=300&q=80',
+      descripcion: 'Pickup premium'
+    }
   ];
 
   mobileMenuOpen = false;

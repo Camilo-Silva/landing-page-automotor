@@ -28,7 +28,7 @@
     flex: 0 0 auto;
 
     img {
-      height: 32px;
+      height: 40px;
       width: auto;
       transition: transform 0.3s ease;
 
@@ -191,26 +191,113 @@
 }
 
 // Estilos para el dropdown de modelos
-::ng-deep .modelos-dropdown {
-  margin-top: 8px;
+::ng-deep .modelos-dropdown.mega-menu {
+  margin-top: 12px;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 
   .mat-mdc-menu-content {
-    padding: 8px 0;
+    padding: 0;
+    background: white;
   }
 
-  .mat-mdc-menu-item {
+  .modelos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 16px;
+    max-width: 900px;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .modelo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    height: auto;
+    min-height: auto;
+
+    &:hover {
+      background-color: #f8f9fa;
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .modelo-image {
+      width: 100%;
+      max-width: 200px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: #f0f0f0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    &:hover .modelo-image img {
+      transform: scale(1.1);
+    }
+
+    .modelo-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 4px;
+
+      .modelo-nombre {
+        font-size: 16px;
+        font-weight: 700;
+        color: #003478;
+        letter-spacing: 0.5px;
+      }
+
+      .modelo-desc {
+        font-size: 12px;
+        color: #666;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .mat-mdc-menu-item.ver-todos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    color: #003478;
+    font-weight: 600;
     font-size: 14px;
-    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #e0e0e0;
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: rgba(0, 52, 120, 0.1);
-      padding-left: 24px;
+      background-color: #003478;
+      color: white;
+
+      mat-icon {
+        transform: translateX(4px);
+      }
     }
 
-    &.ver-todos {
-      color: #003478;
-      font-weight: 600;
+    mat-icon {
+      transition: transform 0.3s ease;
     }
   }
 }

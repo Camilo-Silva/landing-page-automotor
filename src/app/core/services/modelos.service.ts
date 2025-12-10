@@ -47,6 +47,7 @@ export class ModelosService {
       descripcionLarga: 'Ford Ranger es sinónimo de robustez y capacidad. Diseñada para el trabajo duro y la aventura, ofrece tracción en las 4 ruedas, gran capacidad de carga y tecnología de última generación.',
       imagenPrincipal: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&q=80',
       imagenCard: 'https://images.unsplash.com/photo-1586339277861-b0b895343ba5?w=600&q=80',
+      videoUrl: 'videos/Ford_Ranger.mp4',
       galeria: [
         'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&q=80',
         'https://images.unsplash.com/photo-1586339277861-b0b895343ba5?w=1200&q=80'

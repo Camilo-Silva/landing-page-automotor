@@ -3,7 +3,7 @@
     <!-- Logo -->
     <div class="logo">
       <a routerLink="/home">
-        <img src="https://www.ford.com.ar/content/dam/ford-ar/ford-logo-white.svg" alt="Ford Logo" />
+        <img src="image/LOGO.png" alt="Logo" />
       </a>
     </div>
 
@@ -19,15 +19,25 @@
           MODELOS
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
-        <mat-menu #modelosMenu="matMenu" class="modelos-dropdown">
-          <a *ngFor="let modelo of modelos"
-             [routerLink]="['/modelos', modelo.slug]"
-             mat-menu-item>
-            {{ modelo.nombre }}
-          </a>
+        <mat-menu #modelosMenu="matMenu" class="modelos-dropdown mega-menu">
+          <div class="modelos-grid">
+            <a *ngFor="let modelo of modelos"
+               [routerLink]="['/modelos', modelo.slug]"
+               class="modelo-item"
+               mat-menu-item>
+              <div class="modelo-image">
+                <img [src]="modelo.imagen" [alt]="modelo.nombre">
+              </div>
+              <div class="modelo-info">
+                <span class="modelo-nombre">{{ modelo.nombre }}</span>
+                <span class="modelo-desc">{{ modelo.descripcion }}</span>
+              </div>
+            </a>
+          </div>
           <mat-divider></mat-divider>
           <a routerLink="/modelos" mat-menu-item class="ver-todos">
-            Ver Todos los Modelos
+            <span>Ver Todos los Modelos</span>
+            <mat-icon>arrow_forward</mat-icon>
           </a>
         </mat-menu>
       </div>

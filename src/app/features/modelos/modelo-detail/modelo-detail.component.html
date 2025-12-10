@@ -28,6 +28,18 @@
     </div>
   </section>
 
+  <!-- Video promocional (si existe) -->
+  <section class="video-section" *ngIf="modelo.videoUrl">
+    <div class="video-overlay"></div>
+    <div class="video-content">
+      <h2>{{ modelo.nombre }} en Acción</h2>
+    </div>
+    <video #modeloVideo loop muted playsinline preload="metadata" class="modelo-video">
+      <source [src]="modelo.videoUrl" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </section>
+
   <!-- Galería de imágenes -->
   <section class="galeria-section">
     <h2>Galería</h2>

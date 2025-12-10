@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -23,7 +23,8 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './modelo-detail.component.html',
   styleUrls: ['./modelo-detail.component.scss']
 })
-export class ModeloDetailComponent implements OnInit, OnDestroy {
+export class ModeloDetailComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('modeloVideo') modeloVideo!: ElementRef<HTMLVideoElement>;
   modelo: Modelo | undefined;
   loading = true;
   imagenSeleccionada = 0;
@@ -42,6 +43,53 @@ export class ModeloDetailComponent implements OnInit, OnDestroy {
         const slug = params['nombreModelo'];
         this.loadModelo(slug);
       });
+  }
+
+  ngAfterViewInit() {
+    // Forzar reproducción del video después de que la vista se cargue
+    if (this.modeloVideo && this.modeloVideo.nativeElement) {
+      const video = this.modeloVideo.nativeElement;
+
+      // CRÍTICO: Pausar inmediatamente para evitar audio inicial
+      video.pause();
+      video.currentTime = 0;
+
+      // Configurar el video para estar siempre silenciado ANTES de cualquier reproducción
+      video.muted = true;
+      video.volume = 0;
+      video.defaultMuted = true;
+
+      // Prevenir que el volumen se cambie
+      video.addEventListener('volumechange', () => {
+        if (!video.muted) {
+          video.muted = true;
+          video.volume = 0;
+        }
+      });
+
+      // Esperar a que se carguen los metadatos y LUEGO reproducir
+      video.addEventListener('loadedmetadata', () => {
+        video.muted = true;
+        video.volume = 0;
+        // Pequeño delay para asegurar que muted está aplicado
+        setTimeout(() => {
+          video.play().catch(error => {
+            console.log('Error al reproducir video:', error);
+          });
+        }, 50);
+      });
+
+      // Si ya está cargado, aplicar directamente
+      if (video.readyState >= 1) {
+        video.muted = true;
+        video.volume = 0;
+        setTimeout(() => {
+          video.play().catch(error => {
+            console.log('Error al reproducir video:', error);
+          });
+        }, 50);
+      }
+    }
   }
 
   ngOnDestroy() {

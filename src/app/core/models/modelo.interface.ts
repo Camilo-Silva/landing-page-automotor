@@ -7,6 +7,7 @@ export interface Modelo {
   imagenPrincipal: string;
   imagenCard: string;
   galeria: string[];
+  videoUrl?: string;
   precio: number;
   especificaciones: {
     motor: string;
